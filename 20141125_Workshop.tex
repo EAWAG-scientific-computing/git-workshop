@@ -1,0 +1,187 @@
+\documentclass{beamer}
+
+\usepackage{graphicx}
+\usepackage{beamertexpower}
+\usepackage{appendixnumberbeamer}
+\usepackage[latin1]{inputenc}
+\usepackage{pifont}
+\usepackage{calc}
+\usepackage{ae}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{overpic}
+\usepackage{animate}
+\usepackage{tikz}
+\usepackage{fixltx2e}
+
+
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          bullet=circle,% Use circles instead of squares for bullets.
+          titleline=true,% Show a line below the frame title.
+          alternativetitlepage=true,% Use the title page with image.
+          titlepagelogo=logo,% Logo for the first page.
+          framepagelogo=logo.png, % logo for every page
+          watermarkheight=10px,% Height of the watermark.
+          watermarkheightmult=1,% The watermark image is 4 times bigger
+                                % than watermarkheight.
+          usenavigationbar=true% Use a naviagation bar on top, or not...
+          ]{Lucerne}
+
+\title{Installing and using git}
+\subtitle{Workshop Scientific computing}
+\author[P.\ Meier]{Philipp Meier} 
+\date{November 25, 2014}
+\institute[EAWAG]{Eawag: Swiss Federal Institute of Aquatic Science and Technology}
+
+\begin{document}
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{Install \texttt{git}}
+\begin{itemize}
+\item Install from \texttt{\url{http://git-scm.com/download}}
+\item Open Git GUI
+\item Open "Repository" > "Git Bash"
+\end{itemize}
+\note{Tell git who you are.}
+\begin{block}{}
+\tt
+git config ---global user.email "your.name@eawag.ch"\\
+git config ---global user.name "Your Name"
+\end{block}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Create a local repository}
+\only<1>{\begin{itemize}
+    \item Open Git GUI
+    \item Create new repository 
+    \item Open Git Bash
+\end{itemize}}%
+\only<2>{\vspace{-7.5mm}
+        \small
+        \begin{columns}[T]
+            \begin{column}{.33\linewidth}
+                \begin{block}{Create repository}
+                        \texttt{git init}
+                \end{block}
+                \vspace{-1.2mm}
+                \begin{block}{Add files}
+                        \texttt{git add <file>}
+                \end{block}
+                \vspace{-1.2mm}
+                \begin{block}{Revert changes}
+                        \texttt{git reset ---hard}
+                \end{block}
+                \vspace{-1.2mm}
+                \begin{block}{Show status}
+                        \texttt{git status}
+                \end{block}
+                \vspace{-1.2mm}
+                \begin{block}{Stash changes}
+                        \texttt{git stash}\\
+                        \texttt{git stash list}\\
+                        \texttt{git stash apply}
+                \end{block}
+            \end{column}
+            \begin{column}{.66\linewidth}
+                \begin{block}{Commit}
+                        \texttt{git commit -m "Commit message."}\\
+                        Commit all changes:\\
+                        \texttt{git commit -a -m "Commit message."}
+                \end{block}
+                \vspace{-2mm}
+                \begin{columns}
+                    \begin{column}{.45\linewidth}
+                        \begin{block}{Create branch}
+                                \texttt{git branch <branch name>}
+                        \end{block}
+                    \end{column}
+                    \begin{column}{.45\linewidth}
+                        \begin{block}{Merge}
+                                \texttt{git merge <other branch>}
+                        \end{block}
+                    \end{column}
+                \end{columns}
+                \vspace{-1mm}
+                \begin{block}{Create tag}
+                        \texttt{git tag -a <tag> -m"Description"}\\
+                        \texttt{git tag}
+                \end{block}
+                \vspace{-1.5mm}
+                \begin{block}{Switch version}
+                        \texttt{git checkout <branch>}\\
+                        \texttt{git checkout <tag>}\\
+                        \texttt{git checkout <version>}
+                \end{block}
+            \end{column}
+    \end{columns}}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Working with remote repositories (1)}
+
+\begin{enumerate}
+\item Open Git GUI
+\item Clone existing repository
+
+Source location: git@54.77.30.64:/home/git/git\_demo.git
+
+Target Directory: git\_demo
+
+Password: \texttt{GitEAWAG2014}
+\end{enumerate}
+
+\vfill
+
+Git Bash:
+\begin{block}{}
+\texttt{git clone git@54.77.30.64:/home/git/git\_demo.git}\\
+\end{block}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Working with remote repositories (2)}
+\note{Remember, we had more branches (one for F. Hollande).}
+\begin{itemize}
+\item Which branches do you have?
+\uncover<2->{\begin{block}{}\tt git branch\end{block}}
+\uncover<3->{\begin{block}{}\tt git branch -r\end{block}}
+\item<4-> Copy remote branches:
+\uncover<5->{\begin{block}{}\tt git pull origin <branch name>\end{block}}
+\note{Get the branch 'hollande' switch to it, open the file and check if
+everythig is OK.}
+\uncover<6->{\begin{block}{}\tt git pull origin hollande\end{block}}
+\uncover<6->{\begin{block}{}\tt git checkout hollande\end{block}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Collaborative development}
+Complete the following sections in the document (in groups):
+
+\begin{enumerate}
+\item Branching
+\item Stashing
+\item Tagging
+\item Commit
+\item Staging and Committing
+\item Merging
+\item Clone from remote repository
+\end{enumerate}
+
+Commit all changes.
+
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Push changes to remote repository}
+\begin{block}{}\tt git push origin <branch name>\end{block}
+\end{frame}
+
+\end{document}
